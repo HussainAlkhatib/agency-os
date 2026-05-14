@@ -1,4 +1,4 @@
-# Agency CLI
+# Agency OS
 
 Professional AI Agent Orchestration Framework.
 

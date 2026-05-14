@@ -1,14 +1,14 @@
 from setuptools import setup, find_packages
 
 setup(
-    name="agency-intelligence",
+    name="agency-os",
     version="0.1.0",
     author="Hussain Alkhatib",
     author_email="h2311065@gmail.com",
     description="Professional AI Agent Orchestration CLI",
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
-    url="https://github.com/HussainAlkatib/agency-agents",
+    url="https://github.com/HussainAlkatib/agency-os",
     packages=find_packages(),
     include_package_data=True,
     install_requires=[],
