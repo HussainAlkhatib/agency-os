@@ -1,17 +1,3 @@
 include agency_cli/templates/*.md
-recursive-include academic *.md
-recursive-include design *.md
-recursive-include engineering *.md
-recursive-include finance *.md
-recursive-include game-development *.md
-recursive-include marketing *.md
-recursive-include paid-media *.md
-recursive-include product *.md
-recursive-include project-management *.md
-recursive-include sales *.md
-recursive-include spatial-computing *.md
-recursive-include specialized *.md
-recursive-include strategy *.md
-recursive-include support *.md
-recursive-include testing *.md
+recursive-include agency_cli/agents_data *.md
 include README.md

@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="agency-os",
-    version="0.1.0",
+    version="0.1.1",
     author="Hussain Alkhatib",
     author_email="h2311065@gmail.com",
     description="Professional AI Agent Orchestration CLI",

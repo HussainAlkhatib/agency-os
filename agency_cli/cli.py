@@ -6,7 +6,7 @@ import json
 class AgencyCLI:
     def __init__(self):
         self.base_path = os.path.dirname(os.path.abspath(__file__))
-        self.repo_root = os.path.abspath(os.path.join(self.base_path, ".."))
+        self.repo_root = os.path.join(self.base_path, "agents_data")
         self.project_root = os.getcwd()
         self.agency_dir = os.path.join(self.project_root, ".agency")
         self.agents_dir = os.path.join(self.agency_dir, "agents")
@@ -39,8 +39,13 @@ class AgencyCLI:
         exclusions = {
             ".git", ".github", "agency_cli", ".agency", "scripts", 
             "integrations", "examples", "test_project", "node_modules",
-            "__pycache__", "build", "dist"
+            "__pycache__", "build", "dist", "test_project_all", ".agency-all"
         }
+        
+        if not os.path.exists(self.repo_root):
+            print("Error: Agent data not found.")
+            return
+
         divisions = [d for d in os.listdir(self.repo_root) 
                      if os.path.isdir(os.path.join(self.repo_root, d)) 
                      and d not in exclusions 
@@ -96,22 +101,22 @@ class AgencyCLI:
         # Copy templates to .agency-all as well
         templates_path = os.path.join(self.base_path, "templates")
         for template in ["project_manager.md", "prompter.md"]:
-            shutil.copy2(os.path.join(templates_path, template), os.path.join(all_dir, template))
+            src = os.path.join(templates_path, template)
+            if os.path.exists(src):
+                shutil.copy2(src, os.path.join(all_dir, template))
+            else:
+                print(f"Warning: Template {template} not found.")
 
-        exclusions = {
-            ".git", ".github", "agency_cli", ".agency", ".agency-all", 
-            "scripts", "integrations", "examples", "test_project", 
-            "node_modules", "__pycache__", "build", "dist"
-        }
-        
+        if not os.path.exists(self.repo_root):
+            print("Error: Agent data not found.")
+            return
+
         total_count = 0
         for div in os.listdir(self.repo_root):
             div_path = os.path.join(self.repo_root, div)
-            if os.path.isdir(div_path) and div not in exclusions and not div.endswith(".egg-info"):
+            if os.path.isdir(div_path):
                 for item in os.listdir(div_path):
                     if item.endswith(".md"):
-                        # We use the division name in the filename to avoid collisions if necessary, 
-                        # but usually names are unique. Let's keep original names for simplicity.
                         shutil.copy2(os.path.join(div_path, item), os.path.join(agents_pool, item))
                         total_count += 1
         
