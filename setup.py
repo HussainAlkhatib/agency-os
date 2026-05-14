@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name="agency-cli",
+    name="agency-agents",
     version="0.1.0",
     author="Agency Team",
     author_email="contact@agency-agents.com",
